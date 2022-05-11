@@ -22,6 +22,9 @@ const users = []
 //set view engine to use ejs
 app.set('view engine', 'ejs')
 
+//set static folder
+app.use(express.static('public'))
+
 //urlencoded() is a method inbuilt in express to recognize the incoming Request Object as strings or arrays.
 app.use(express.urlencoded({extended: false}))
 
