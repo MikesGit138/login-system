@@ -6,17 +6,17 @@
 <section class="flex place-content-center container justify-center items-center h-screen">
 <div class="bg-emerald-500 flex-col container text-center space-y-9 bold text-4xl w-1/2 py-9 rounded justify-center">
 <h1 class="text-slate-700 text-7xl font-bold">Login</h1>
-<% if (messages.error) { %> 
-    <%= messages.error %> 
-    <% } %>  
 <form action="/login" method="post">
+  <% if (messages.error) { %> 
+    <span class="text-red-500 mt-9"> <%= messages.error %> </span>
+     <% } %>  
     <div>
-        <label for="email" class="text-slate-800 ">Email</label>
+        <label for="email" class="text-slate-800 ml-9 ">Email</label>
         <input type="email" id="email" name="email" class="m-4 rounded invalid:border-pink-500" required>
     </div>
     <div>
         <label for="password" class="text-slate-800">Password</label>
-        <input type="password" id="password" name="password" class="rounded" required>
+        <input type="password" id="password" name="password" class="rounded mr-7" required>
     </div>
     <div>
     
@@ -27,20 +27,3 @@
 </div>
 </section>
 </body>
-<!-- <h1>Login</h1>
-<% if (messages.error) { %>
-  <%= messages.error %>
-<% } %>
-<form action="/login" method="POST">
-  <div>
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" required>
-  </div>
-  <div>
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" required>
-  </div>
-  <button type="submit">Login</button>
-<button><a href="/register">Register</a></button>
-
-</form> -->
