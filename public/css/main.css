@@ -506,66 +506,61 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin: 1rem;
 }
 
-.my-8 {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
 .my-5 {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
-}
-
-.ml-2 {
-  margin-left: 0.5rem;
 }
 
 .mt-9 {
   margin-top: 2.25rem;
 }
 
-.ml-6 {
-  margin-left: 1.5rem;
-}
-
 .ml-9 {
   margin-left: 2.25rem;
-}
-
-.mr-5 {
-  margin-right: 1.25rem;
-}
-
-.mr-6 {
-  margin-right: 1.5rem;
-}
-
-.mr-8 {
-  margin-right: 2rem;
 }
 
 .mr-7 {
   margin-right: 1.75rem;
 }
 
-.mb-9 {
-  margin-bottom: 2.25rem;
+.ml-6 {
+  margin-left: 1.5rem;
 }
 
-.mb-8 {
-  margin-bottom: 2rem;
+.mr-5 {
+  margin-right: 1.25rem;
 }
 
 .mb-5 {
   margin-bottom: 1.25rem;
 }
 
-.mb-6 {
-  margin-bottom: 1.5rem;
+.ml-0 {
+  margin-left: 0px;
 }
 
-.ml-7 {
-  margin-left: 1.75rem;
+.ml-1 {
+  margin-left: 0.25rem;
+}
+
+.mr-1 {
+  margin-right: 0.25rem;
+}
+
+.mr-4 {
+  margin-right: 1rem;
+}
+
+.ml-4 {
+  margin-left: 1rem;
+}
+
+.mr-6 {
+  margin-right: 1.5rem;
+}
+
+.mr-9 {
+  margin-right: 2.25rem;
 }
 
 .flex {
@@ -659,6 +654,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(51 65 85 / var(--tw-text-opacity));
 }
 
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+
 .text-slate-800 {
   --tw-text-opacity: 1;
   color: rgb(30 41 59 / var(--tw-text-opacity));
@@ -667,11 +667,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-red-500 {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
 .invalid\:border-pink-500:invalid {
