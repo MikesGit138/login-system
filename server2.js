@@ -1,12 +1,13 @@
-if(process.env.NODE_ENV !== 'production'){
-    require('dotenv').config()
-}
+require('dotenv').config()
+
+var bodyParser = require('body-parser')
 
 const express = require('express')
 const app = express()
 const bcrypt = require('bcrypt')
 const passport = require('passport')
 const flash = require('express-flash')
+// const flash = require('connect-flash');
 const session = require('express-session')
 const methodOverride = require('method-override')
 
@@ -26,14 +27,14 @@ connection.connect(function(error){
     else console.log(error)
 })
 
-// const users = []
-
 //set view engine to use ejs
 app.set('view engine', 'ejs')
 
 //set static folder
 app.use(express.static('public'))
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 //urlencoded() is a method inbuilt in express to recognize the incoming Request Object as strings or arrays.
 app.use(express.urlencoded({extended: false}))
 
@@ -41,7 +42,7 @@ app.use(flash())
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialize: false
+    saveUninitialized: false
 }))
 
 app.use(passport.initialize())
@@ -50,38 +51,35 @@ app.use(methodOverride('_method'))
 
 //get home route
 app.get('/', (req, res) => {
-    res.render('index.ejs', {name: req.body.name})
+    res.render('index.ejs', {username: req.body.username})
 })
 
 //get login route
 app.get('/login', (req, res) => {
     res.render('login.ejs')
   })
-// app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
-//     successRedirect: '/',
-//     failureRedirect: '/login',
-//     failureFlash: true
-//   }))
-
 
 app.post('/login',(req,res)=>{
-  var username = req.body.username 
-  var email = req.body.email;
-  var password = req.body.password;
-  database.query("select * from user where email = ? and password = ?",[email, password],(error, results,fields)=>{
-    // console.log(error)
-    // console.log(results)
-    console.log(req.body)
-      if(fields.length > 0){
-        
-          res.render('index.ejs', {username: req.body.username})
-          // res.send('horay!')
+  
+  let email = req.body.email;
+  let password = req.body.password;
+
+  console.log(email);
+  console.log(password);
+  
+  database.query("select * from restaurant.user where email = ?",[email],(error, results,fields)=>{
+    if (error) throw error
+    console.log(results);
+
+      if(results.length > 0 && bcrypt.compare(password,results[0].password)){
+          res.render('index.ejs'  , {username: req.body.email})
+          req.session.loggedin = true;
+				  req.session.email = email;
       }
 
       else{
+        req.flash('messages', {messages:{error:'incorrect credentials'}})
           res.redirect('/login')
-          // console.log(results.length)
-          
       }
       res.end()
   })
@@ -95,13 +93,12 @@ app.get('/register', (req,res) =>{
 
 //post register route for changes
 app.post('/register', async (req,res)=>{
-                    //async used for 'try catch'
-    // try{
-        const hashedPassword = await bcrypt.hash(req.body.password, 1)
+                  
+        const hashedPassword = await bcrypt.hash(req.body.password, 10)
                              //await used becuase it is asynchronous and will return after waiting
         let data = {
-            // id: Date.now().toString(),
-            username: req.body.name,
+           
+            username: req.body.username,
             email: req.body.email,
             password: hashedPassword
         }
@@ -112,10 +109,7 @@ app.post('/register', async (req,res)=>{
                                 console.table(results)
     
             })
-    // }catch{
-    //     res.redirect('/register')
-
-    // }
+    
 })
 
 app.delete('/logout', (req, res) => {
@@ -123,18 +117,5 @@ app.delete('/logout', (req, res) => {
     res.redirect('/login')
   })
   
-  // function checkAuthenticated(req, res, next) {
-  //   if (req.isAuthenticated()) {
-  //     return next()
-  //   }
   
-  //   res.redirect('/login')
-  // }
-  
-  // function checkNotAuthenticated(req, res, next) {
-  //   if (req.isAuthenticated()) {
-  //     return res.redirect('/')
-  //   }
-  //   next()
-//}
 app.listen(3000)

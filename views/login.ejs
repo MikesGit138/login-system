@@ -8,7 +8,7 @@
 <h1 class="text-slate-700 text-7xl font-bold">Login</h1>
 <form action="/login" method="post">
   <% if (messages.error) { %> 
-    <span class="text-red-500 mt-9"> <%= messages.error %> </span>
+    <span class="text-red-500 mt-9"> <%= messages %> </span>
      <% } %>  
     <div>
         <label for="email" class="text-slate-800 ml-9 ">Email</label>
