@@ -51,7 +51,12 @@ app.use(methodOverride('_method'))
 
 //get home route
 app.get('/', (req, res) => {
-    res.render('index.ejs', {username: req.body.username})
+    let sql =  "SELECT * FROM restaurant.menu"
+    let query = connection.query(sql, (err, rows) =>{
+      if (err) console.log('wrong')
+      else console.log('menu query ran')
+    res.render('index.ejs', {username: req.body.username, menu: rows})
+})
 })
 
 //get login route
@@ -71,7 +76,7 @@ app.post('/login',(req,res)=>{
     console.log(results);
 
       if(results.length > 0 && bcrypt.compare(password,results[0].password)){
-          res.render('index.ejs'  , {username: req.body.username})
+          res.render('index.ejs'  , {username: req.body.username, menu: results})
           req.session.loggedin = true;
 				  req.session.username = username;
       }
@@ -83,6 +88,7 @@ app.post('/login',(req,res)=>{
       }
       res.end()
   })
+  
 })
 
 

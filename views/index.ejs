@@ -8,27 +8,53 @@
 <body class="">
     <!-- <nav>
     </nav> -->
-    <div class="container flex justify-evenly pt-6 pb-2 bg-emerald-200 ">
-        <h1 class="text-5xl font-bold text-slate-700">Welcome <%= username %>
+    <div class="container flex justify-between pt-6 pb-2 bg-emerald-200 ">
+        <div>
+        <h1 class="text-5xl font-bold text-slate-700 ml-5">Welcome <%= username %>
         </h1>
+        </div>
+        <!-- <div class="flex space-x-9" > -->
+           
         <form action="/logout?_method=DELETE" method="POST">
-            <button type="submit"
-                class="bg-emerald-500 py-3 px-6 rounded text-slate-800 text-white font-bold text-2xl hover:bg-slate-100 hover:text-slate-700">Log
-                Out</button>
+            <button class="bg-emerald-500 rounded p-4 text-slate-800 text-white font-bold text-2xl mr-4 hover:bg-slate-600 hover:text-slate-200"><a href="#">View Orders</a></button>
+            <button type="submit" class="p-4 rounded font-bold text-2xl bg-slate-100 text-slate-700 mr-7 hover:bg-slate-50">Log Out</button>
         </form>
+        <!-- </div> -->
     </div>
-    <div id="home">
-    <section class="flex-col place-content-center pt-4" id="food-ctn">
-        <div class="border-4 border-sky-500 rounded-2xl">
-            <img src="https://scx2.b-cdn.net/gfx/news/hires/2016/howcuttingdo.jpg" alt="junk food"  class="rounded-t-xl" width="100%">
-        </div>
-        <div class="border-4 border-sky-500 rounded-2xl">
-            <img src="https://insanelygoodrecipes.com/wp-content/uploads/2020/12/Chocolate-Chip-Pancakes.png" alt="breakfast pic" class="rounded-t-xl" width="100%" >
-        </div>
-        <div class="border-4 border-sky-500 rounded-2xl">
-            <img src="https://www.thespruceeats.com/thmb/jB_owTgrUOeLFn41ta94EnDQQYE=/3000x1687/smart/filters:no_upscale()/classic-caesar-salad-recipe-996054-Hero_01-33c94cc8b8e841ee8f2a815816a0af95.jpg" alt="vegetarian" class="rounded-t-xl">
-        </div>
-    </section>
+    <div id="home" class=''>
+    <table border="1" class="text-white" id="food">
+        <tr class="bg-emerald-200 text-slate-700">
+            <!-- <th>id</th> -->
+            <th>Breakfast</th>
+            <th>Lunch</th>
+            <th>Supper</th>
+            <th>Add</th>
+        </tr>
+        <% menu.forEach( (item) => { %>
+            <tr>
+                <!-- <td>
+                    <%# item.id %>
+                </td> -->
+                <td>
+                    <%= item.breakfast %>
+                </td>
+                <td>
+                    <%= item.lunch %>
+                </td>
+                <td>
+                    <%= item.supper %>
+                </td>
+                <td>
+                    <button class="bg-emerald-500 py-1 px-2 rounded text-slate-800 text-white font-bold text-2xl hover:bg-slate-100 hover:text-slate-700"><a href="#">Add</a></button>
+                </td>
+            </tr>
+            <% }) %>
+    </table>
+   
+
+
+
+
     </div>
 </body>
 <style>
@@ -41,9 +67,29 @@
     height: 100vh;
    
 }
-#food-ctn{
-    display: grid;
-    grid-template-columns:repeat( auto-fit, minmax(250px, 1fr) )
+#food{
+    border-collapse: collapse;
+  width: 90%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%,25%);
+  text-align: center;
+  font-size: larger;
+  border-radius: 5px;
+  overflow: hidden;
 }
+#food td, #food th {
+  border: 1px solid rgb(7, 51, 146);
+  padding: 8px;
+}
+#food th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  /* background-color: #04AA6D; */
+  /* color: white; */
+  font-size: 30px;
+}
+#food tr:nth-child(even){background-color: #1e1989;}
 </style>
 </html>
