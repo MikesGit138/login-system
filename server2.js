@@ -34,7 +34,7 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 //urlencoded() is a method inbuilt in express to recognize the incoming Request Object as strings or arrays.
 app.use(express.urlencoded({extended: false}))
 
@@ -61,25 +61,25 @@ app.get('/login', (req, res) => {
 
 app.post('/login',(req,res)=>{
   
-  let email = req.body.email;
+  let username = req.body.username;
   let password = req.body.password;
 
-  console.log(email);
   console.log(password);
   
-  database.query("select * from restaurant.user where email = ?",[email],(error, results,fields)=>{
+  database.query("select * from restaurant.user where username = ?",[username],(error, results,fields)=>{
     if (error) throw error
     console.log(results);
 
       if(results.length > 0 && bcrypt.compare(password,results[0].password)){
-          res.render('index.ejs'  , {username: req.body.email})
+          res.render('index.ejs'  , {username: req.body.username})
           req.session.loggedin = true;
-				  req.session.email = email;
+				  req.session.username = username;
       }
 
       else{
-        req.flash('messages', {messages:{error:'incorrect credentials'}})
-          res.redirect('/login')
+        // req.flash('message', 'incorrect credentials')
+        //   res.redirect('/login')  
+        res.send('incorrect login info')
       }
       res.end()
   })

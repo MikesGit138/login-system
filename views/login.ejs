@@ -7,13 +7,17 @@
 <div class="bg-emerald-500 flex-col container text-center space-y-9 bold text-4xl w-1/2 py-9 rounded justify-center">
 <h1 class="text-slate-700 text-7xl font-bold">Login</h1>
 <form action="/login" method="post">
-  <% if (messages.error) { %> 
-    <span class="text-red-500 mt-9"> <%= messages %> </span>
-     <% } %>  
-    <div>
+  <%# if (message.error) { %> 
+    <span class="text-red-500 mt-9"> <%# message %> </span>
+     <%# } %>  
+     <div>
+        <label for="name" class="text-slate-800">Username</label>
+        <input type="text" id="name" name="username" required class="rounded mb-5 mt-4 mr-9" >
+    </div>
+    <!-- <div>
         <label for="email" class="text-slate-800 ml-9 ">Email</label>
         <input type="email" id="email" name="email" class="m-4 rounded invalid:border-pink-500" required>
-    </div>
+    </div> -->
     <div>
         <label for="password" class="text-slate-800">Password</label>
         <input type="password" id="password" name="password" class="rounded mr-7" required>

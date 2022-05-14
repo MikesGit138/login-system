@@ -515,6 +515,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 2.25rem;
 }
 
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mr-9 {
+  margin-right: 2.25rem;
+}
+
 .ml-9 {
   margin-left: 2.25rem;
 }
@@ -523,44 +535,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-right: 1.75rem;
 }
 
-.ml-6 {
-  margin-left: 1.5rem;
+.mb-5 {
+  margin-bottom: 1.25rem;
 }
 
 .mr-5 {
   margin-right: 1.25rem;
 }
 
-.mb-5 {
-  margin-bottom: 1.25rem;
-}
-
-.ml-0 {
-  margin-left: 0px;
-}
-
-.ml-1 {
-  margin-left: 0.25rem;
-}
-
-.mr-1 {
-  margin-right: 0.25rem;
-}
-
-.mr-4 {
-  margin-right: 1rem;
-}
-
-.ml-4 {
-  margin-left: 1rem;
-}
-
-.mr-6 {
-  margin-right: 1.5rem;
-}
-
-.mr-9 {
-  margin-right: 2.25rem;
+.mb-4 {
+  margin-bottom: 1rem;
 }
 
 .flex {
