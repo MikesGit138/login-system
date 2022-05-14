@@ -59,6 +59,7 @@ app.get('/', (req, res) => {
 })
 })
 
+
 //get login route
 app.get('/login', (req, res) => {
     res.render('login.ejs')
@@ -74,9 +75,10 @@ app.post('/login',(req,res)=>{
   database.query("select * from restaurant.user where username = ?",[username],(error, results,fields)=>{
     if (error) throw error
     console.log(results);
-
+    
       if(results.length > 0 && bcrypt.compare(password,results[0].password)){
-          res.render('index.ejs'  , {username: req.body.username, menu: results})
+        getHome()
+          res.render('index.ejs'  , {username: req.body.username})
           req.session.loggedin = true;
 				  req.session.username = username;
       }
